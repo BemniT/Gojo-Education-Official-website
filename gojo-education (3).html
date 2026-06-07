@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gojo Education Platform — A cloud-based SaaS school management and digital learning ecosystem built for schools in Ethiopia and Africa.">
+<meta property="og:title" content="Gojo — Digital School Management Platform">
+<meta property="og:description" content="Connecting students, parents, teachers, and school administrators in one unified platform. Built for Ethiopia, expanding across Africa.">
+<title>Gojo Education Platform | Digital School Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+:root{
+  --ink:#0c0f1a;
+  --ink2:#1a1f35;
+  --slate:#344054;
+  --muted:#667085;
+  --dim:#98a2b3;
+  --border:#e4e7ec;
+  --surface:#f9fafb;
+  --white:#ffffff;
+  --green:#12b76a;
+  --green-d:#027a48;
+  --green-bg:#ecfdf3;
+  --green-border:#a6f4c5;
+  --amber:#f79009;
+  --amber-bg:#fffaeb;
+  --blue:#2e90fa;
+  --blue-bg:#eff8ff;
+  --r:10px;
+  --r2:16px;
+  --r3:24px;
+  --shadow:0 1px 3px rgba(16,24,40,0.1),0 1px 2px rgba(16,24,40,0.06);
+  --shadow-md:0 4px 8px -2px rgba(16,24,40,0.1),0 2px 4px -2px rgba(16,24,40,0.06);
+  --shadow-lg:0 12px 32px -4px rgba(16,24,40,0.1),0 4px 12px -2px rgba(16,24,40,0.05);
+  --shadow-xl:0 24px 48px -12px rgba(16,24,40,0.18);
+}
+body{
+  font-family:'DM Sans',sans-serif;
+  color:var(--slate);
+  background:#fff;
+  font-size:16px;line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* ─── UTILITY ─── */
+.wrap{max-width:1120px;margin:0 auto;padding:0 2.5rem}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.1;letter-spacing:-0.025em;color:var(--ink)}
+p{color:var(--slate)}
+
+/* ─── ANNOUNCEMENT BAR ─── */
+.ann{
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  gap:0.75rem;padding:0.65rem 2rem;
+  font-size:0.82rem;color:rgba(255,255,255,0.6);
+}
+.ann strong{color:#fff;font-weight:500}
+.ann-badge{
+  background:rgba(18,183,106,0.15);color:var(--green);
+  font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.2rem 0.55rem;border-radius:100px;border:1px solid rgba(18,183,106,0.25);
+  flex-shrink:0;
+}
+.ann a{color:var(--green);font-weight:500;margin-left:0.25rem}
+
+/* ─── NAV ─── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1120px;margin:0 auto;padding:0 2.5rem;
+  display:flex;align-items:center;height:68px;gap:2rem;
+}
+.logo{display:flex;align-items:center;gap:0.65rem;flex-shrink:0}
+.logo-mark{
+  width:36px;height:36px;border-radius:9px;
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.logo-mark::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 40%,rgba(18,183,106,0.35));
+}
+.logo-mark span{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:800;font-size:1.1rem;color:#fff;position:relative;
+}
+.logo-name{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:700;font-size:1.25rem;color:var(--ink);letter-spacing:-0.02em;
+}
+.logo-name em{font-style:normal;color:var(--green)}
+.nav-links{display:flex;gap:0.25rem;flex:1;margin-left:0.5rem}
+.nav-links a{
+  font-size:0.875rem;color:var(--muted);font-weight:400;
+  padding:0.45rem 0.85rem;border-radius:8px;
+  transition:all 0.15s;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--ink);background:var(--surface)}
+.nav-right{display:flex;align-items:center;gap:0.75rem;margin-left:auto;flex-shrink:0}
+.btn-ghost{
+  font-size:0.875rem;font-weight:500;color:var(--slate);
+  padding:0.5rem 1rem;border-radius:8px;cursor:pointer;
+  border:none;background:transparent;font-family:'DM Sans',sans-serif;
+  transition:all 0.15s;
+}
+.btn-ghost:hover{background:var(--surface);color:var(--ink)}
+.btn-primary{
+  font-size:0.875rem;font-weight:600;color:#fff;
+  padding:0.55rem 1.25rem;border-radius:8px;cursor:pointer;
+  border:none;background:var(--ink);font-family:'DM Sans',sans-serif;
+  box-shadow:0 1px 2px rgba(16,24,40,0.05);
+  transition:all 0.15s;display:flex;align-items:center;gap:0.4rem;
+}
+.btn-primary:hover{background:var(--ink2);box-shadow:var(--shadow-md)}
+.btn-primary .arr{transition:transform 0.15s}
+.btn-primary:hover .arr{transform:translateX(3px)}
+
+/* ─── HERO ─── */
+.hero{
+  padding:5.5rem 0 4rem;
+  position:relative;overflow:hidden;
+  background:var(--white);
+}
+/* subtle dot grid */
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,#d0d5dd 1px,transparent 1px);
+  background-size:28px 28px;
+  mask-image:radial-gradient(ellipse 70% 80% at 50% 0%,black 40%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 80% at 50% 0%,black 40%,transparent 100%);
+  opacity:0.5;
+}
+.hero-glow{
+  position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+  width:900px;height:600px;
+  background:radial-gradient(ellipse at center,rgba(18,183,106,0.08) 0%,transparent 65%);
+  pointer-events:none;z-index:0;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  max-width:1120px;margin:0 auto;padding:0 2.5rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+}
+.hero-left{}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:var(--green-bg);border:1px solid var(--green-border);
+  color:var(--green-d);font-size:0.78rem;font-weight:600;letter-spacing:0.04em;
+  padding:0.3rem 0.8rem;border-radius:100px;margin-bottom:1.75rem;
+}
+.ey-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{
+  font-size:clamp(2.6rem,4.5vw,3.8rem);
+  color:var(--ink);margin-bottom:1.5rem;
+  font-weight:800;
+}
+.hero h1 .hl{
+  color:var(--green);
+  position:relative;display:inline-block;
+}
+.hero-sub{
+  font-size:1.05rem;color:var(--muted);
+  line-height:1.78;margin-bottom:2.5rem;font-weight:300;
+}
+.hero-actions{display:flex;gap:0.85rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn-hero-primary{
+  background:var(--ink);color:#fff;border:none;
+  padding:0.8rem 1.75rem;border-radius:9px;
+  font-size:0.95rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;
+  box-shadow:0 1px 2px rgba(16,24,40,0.05),inset 0 1px 0 rgba(255,255,255,0.1);
+  transition:all 0.18s;display:inline-flex;align-items:center;gap:0.5rem;
+}
+.btn-hero-primary:hover{background:var(--ink2);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-hero-outline{
+  background:#fff;color:var(--ink);
+  border:1.5px solid var(--border);
+  padding:0.8rem 1.6rem;border-radius:9px;
+  font-size:0.95rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;
+  box-shadow:var(--shadow);
+  transition:all 0.18s;display:inline-flex;align-items:center;gap:0.5rem;
+}
+.btn-hero-outline:hover{border-color:#98a2b3;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.hero-social{display:flex;align-items:center;gap:1rem}
+.hs-label{font-size:0.78rem;color:var(--dim);font-weight:400}
+.hs-avatars{display:flex}
+.hs-av{
+  width:28px;height:28px;border-radius:50%;
+  border:2px solid #fff;margin-left:-8px;
+  font-size:0.55rem;font-weight:700;font-family:'Bricolage Grotesque',sans-serif;
+  display:flex;align-items:center;justify-content:center;
+}
+.hs-av:first-child{margin-left:0}
+.av-c1{background:#dcfce7;color:#15803d}
+.av-c2{background:#dbeafe;color:#1d4ed8}
+.av-c3{background:#fce7f3;color:#be185d}
+.hs-text{font-size:0.78rem;color:var(--muted)}
+.hs-text strong{color:var(--ink);font-weight:600}
+
+/* hero right — app mockup */
+.hero-right{position:relative}
+.hero-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r3);
+  box-shadow:var(--shadow-xl);
+  overflow:hidden;
+}
+.hc-top{
+  background:var(--ink);padding:1.2rem 1.5rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.hc-dots{display:flex;gap:0.4rem}
+.hcd{width:10px;height:10px;border-radius:50%}
+.hcd-r{background:#ff5f57}.hcd-y{background:#febc2e}.hcd-g{background:#28c840}
+.hc-title{font-size:0.8rem;color:rgba(255,255,255,0.4);font-family:'DM Sans',monospace;flex:1;text-align:center}
+.hc-body{display:flex;height:340px}
+.hc-sb{
+  width:170px;flex-shrink:0;
+  border-right:1px solid var(--border);
+  padding:1rem 0.8rem;background:var(--surface);
+}
+.hc-sb-logo{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.9rem;
+  color:var(--ink);padding:0 0.4rem;margin-bottom:1rem;letter-spacing:-0.02em;
+}
+.hc-sb-logo em{font-style:normal;color:var(--green)}
+.sb-sec{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);padding:0.6rem 0.4rem 0.3rem}
+.sb-item{
+  display:flex;align-items:center;gap:0.5rem;padding:0.42rem 0.5rem;
+  border-radius:7px;font-size:0.72rem;color:var(--muted);cursor:pointer;margin-bottom:1px;
+  transition:all 0.1s;
+}
+.sb-item.on{background:#fff;color:var(--ink);font-weight:500;box-shadow:var(--shadow)}
+.sb-i{font-size:0.85rem}
+.hc-main{flex:1;padding:1.25rem;display:flex;flex-direction:column;gap:0.85rem;overflow:hidden}
+.hc-head{display:flex;justify-content:space-between;align-items:center}
+.hc-htitle{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.95rem;color:var(--ink)}
+.live-pill{
+  display:flex;align-items:center;gap:0.35rem;
+  background:var(--green-bg);color:var(--green-d);
+  font-size:0.62rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+  padding:0.2rem 0.55rem;border-radius:100px;
+}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem}
+.kpi{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:0.65rem 0.7rem;
+}
+.kpi-n{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;color:var(--ink)}
+.kpi-l{font-size:0.58rem;color:var(--dim);margin-top:0.1rem}
+.kpi-d{font-size:0.58rem;color:var(--green);font-weight:500;margin-top:0.1rem}
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;flex:1}
+.mini-panel{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:0.75rem;overflow:hidden;
+}
+.mp-title{font-size:0.58rem;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.55rem}
+.s-row{display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0;border-bottom:1px solid rgba(0,0,0,0.04);font-size:0.68rem}
+.s-row:last-child{border:none}
+.s-av{width:20px;height:20px;border-radius:50%;font-size:0.5rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sa1{background:#dcfce7;color:#15803d}.sa2{background:#dbeafe;color:#1d4ed8}.sa3{background:#fce7f3;color:#be185d}.sa4{background:#fef9c3;color:#b45309}
+.s-name{flex:1;color:var(--slate)}
+.s-grade{font-size:0.58rem;background:var(--green-bg);color:var(--green-d);padding:0.08rem 0.3rem;border-radius:4px;font-weight:600}
+.bar-list{display:flex;flex-direction:column;gap:0.4rem}
+.bar-row{display:flex;align-items:center;gap:0.4rem;font-size:0.62rem}
+.bar-label{width:68px;color:var(--dim);font-size:0.58rem}
+.bar-bg{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:var(--green)}
+.bar-b{background:var(--blue)}
+.bar-pct{width:22px;text-align:right;color:var(--dim);font-size:0.55rem}
+
+/* floating badges on hero */
+.hero-float1{
+  position:absolute;top:20px;right:-16px;
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:0.7rem 0.9rem;box-shadow:var(--shadow-lg);
+  display:flex;align-items:center;gap:0.6rem;
+  animation:float 3s ease-in-out infinite;
+}
+.hero-float2{
+  position:absolute;bottom:30px;left:-20px;
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:0.7rem 0.9rem;box-shadow:var(--shadow-lg);
+  display:flex;align-items:center;gap:0.6rem;
+  animation:float 3.5s ease-in-out infinite reverse;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.fl-icon{font-size:1.2rem}
+.fl-label{font-size:0.7rem;color:var(--dim)}
+.fl-val{font-size:0.85rem;font-weight:700;color:var(--ink);font-family:'Bricolage Grotesque',sans-serif}
+
+/* ─── SECTION BASE ─── */
+section{padding:5.5rem 0}
+.s-label{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--green-d);margin-bottom:0.85rem;
+}
+.s-label::before{content:'';width:16px;height:2px;background:var(--green);border-radius:1px}
+h2.s-title{font-size:clamp(1.9rem,3vw,2.6rem);font-weight:800;margin-bottom:0.85rem}
+p.s-sub{font-size:1rem;color:var(--muted);line-height:1.75;max-width:520px;font-weight:300}
+.center{text-align:center}
+.center p.s-sub{margin:0 auto}
+
+/* ─── LOGO STRIP ─── */
+.strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2rem 0}
+.strip-inner{max-width:1120px;margin:0 auto;padding:0 2.5rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap}
+.strip-label{font-size:0.75rem;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:0.07em;white-space:nowrap}
+.strip-logos{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;flex:1}
+.strip-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:0.92rem;color:#c4cdd6;letter-spacing:-0.01em}
+.pilot-chip{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:var(--green-bg);border:1px solid var(--green-border);
+  color:var(--green-d);font-size:0.78rem;font-weight:500;
+  padding:0.35rem 0.85rem;border-radius:100px;margin-left:auto;white-space:nowrap;
+}
+.pilot-chip strong{font-weight:700}
+
+/* ─── ABOUT ─── */
+.about-sec{background:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3.5rem}
+.about-text p{font-size:0.95rem;color:var(--muted);line-height:1.82;margin-bottom:1.1rem;font-weight:300}
+.about-text p:last-child{margin-bottom:0}
+.about-callout{
+  margin-top:2rem;padding:1.25rem 1.4rem;
+  background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--r2);
+  display:flex;align-items:flex-start;gap:0.85rem;
+}
+.ac-icon{font-size:1.1rem;flex-shrink:0;margin-top:0.05rem}
+.ac-text{font-size:0.875rem;color:var(--green-d);line-height:1.65}
+.ac-text strong{font-weight:600}
+.fact-table{display:flex;flex-direction:column;gap:0}
+.fact-row{
+  display:grid;grid-template-columns:130px 1fr;gap:1rem;
+  padding:0.85rem 0;border-bottom:1px solid var(--border);
+  align-items:baseline;
+}
+.fact-row:last-child{border:none}
+.fk{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--dim)}
+.fv{font-size:0.875rem;color:var(--ink);font-weight:500}
+.fv.light{font-weight:400;color:var(--muted)}
+
+/* ─── PLATFORM ─── */
+.platform-sec{background:var(--surface)}
+.mods{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-top:3rem}
+.mod{
+  background:#fff;padding:2rem 1.75rem;
+  transition:background 0.18s;
+}
+.mod:hover{background:#fafffe}
+.mod-icon{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+  margin-bottom:1.25rem;border:1px solid var(--border);
+}
+.mi-g{background:var(--green-bg);border-color:var(--green-border)}
+.mi-b{background:var(--blue-bg);border-color:#bfdbfe}
+.mi-a{background:var(--amber-bg);border-color:#fde68a}
+.mod h3{font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem;letter-spacing:-0.01em}
+.mod p{font-size:0.82rem;color:var(--muted);line-height:1.65}
+.mod-feats{list-style:none;margin-top:0.85rem;display:flex;flex-direction:column;gap:0.38rem}
+.mod-feats li{font-size:0.78rem;color:var(--muted);display:flex;align-items:baseline;gap:0.5rem}
+.mod-feats li::before{content:'↗';color:var(--green);font-size:0.65rem;flex-shrink:0}
+.mod-wide{grid-column:span 3;background:var(--ink);border-radius:0}
+.mod-wide:hover{background:var(--ink2)}
+.mod-wide-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2.5rem}
+.mw-icon{font-size:1.5rem}
+.mod-wide h3{color:#fff;font-size:1rem}
+.mod-wide p{color:rgba(255,255,255,0.45);font-size:0.82rem;margin-top:0.25rem}
+.mw-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.mw-tag{
+  font-size:0.7rem;padding:0.22rem 0.6rem;border-radius:6px;
+  background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* ─── WHO IT'S FOR ─── */
+.users-sec{background:#fff}
+.users-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem}
+.user-card{
+  border:1px solid var(--border);border-radius:var(--r2);padding:2rem 1.5rem;
+  background:#fff;text-align:center;
+  box-shadow:var(--shadow);transition:all 0.2s;
+}
+.user-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:#98a2b3}
+.u-icon{
+  width:56px;height:56px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  margin:0 auto 1.1rem;border:1px solid var(--border);
+}
+.ui-g{background:var(--green-bg);border-color:var(--green-border)}
+.ui-b{background:var(--blue-bg);border-color:#bfdbfe}
+.ui-p{background:#f5f3ff;border-color:#ddd6fe}
+.ui-a{background:var(--amber-bg);border-color:#fde68a}
+.user-card h3{font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.45rem}
+.user-card p{font-size:0.81rem;color:var(--muted);line-height:1.65}
+
+/* ─── PILOT ─── */
+.pilot-sec{
+  background:var(--ink);
+  position:relative;overflow:hidden;
+}
+.pilot-sec::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(18,183,106,0.12) 0%,transparent 55%);
+  pointer-events:none;
+}
+.pilot-inner{
+  max-width:1120px;margin:0 auto;padding:5.5rem 2.5rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+  position:relative;
+}
+.pilot-left .s-label{color:rgba(18,183,106,0.7)}
+.pilot-left .s-label::before{background:var(--green)}
+.pilot-left h2{color:#fff;font-size:clamp(1.8rem,3vw,2.4rem)}
+.pilot-left p{color:rgba(255,255,255,0.45);font-weight:300;font-size:0.95rem;line-height:1.8;margin-top:1rem}
+.pilot-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--r2);padding:2rem;
+}
+.pilot-card-head{
+  display:flex;align-items:center;gap:0.75rem;
+  padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:1.2rem;
+}
+.pilot-logo{
+  width:44px;height:44px;border-radius:10px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
+}
+.pilot-school{font-weight:600;font-size:0.9rem;color:#fff}
+.pilot-loc{font-size:0.75rem;color:rgba(255,255,255,0.35);margin-top:0.1rem}
+.pilot-outcomes{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.2rem}
+.po{
+  display:flex;align-items:center;gap:0.75rem;
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  border-radius:8px;padding:0.65rem 0.85rem;
+}
+.po-check{
+  width:20px;height:20px;border-radius:50%;
+  background:rgba(18,183,106,0.15);border:1px solid rgba(18,183,106,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.65rem;color:var(--green);flex-shrink:0;font-weight:700;
+}
+.po-text{font-size:0.83rem;color:rgba(255,255,255,0.6)}
+.pilot-quote{
+  font-size:0.82rem;color:rgba(255,255,255,0.35);
+  font-style:italic;line-height:1.65;
+  border-top:1px solid rgba(255,255,255,0.07);padding-top:1rem;
+}
+
+/* ─── ROADMAP ─── */
+.roadmap-sec{background:var(--surface)}
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.phase{
+  border:1px solid var(--border);border-radius:var(--r2);
+  padding:1.75rem;background:#fff;position:relative;overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.phase.done{border-color:var(--green-border);background:var(--green-bg)}
+.phase.active{border-color:#93c5fd;background:var(--blue-bg)}
+.phase-num{
+  position:absolute;top:1rem;right:1.25rem;
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+  font-size:3.5rem;line-height:1;opacity:0.06;color:var(--ink);
+}
+.phase-chip{
+  display:inline-block;font-size:0.65rem;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.22rem 0.65rem;border-radius:100px;margin-bottom:1rem;
+}
+.pc-done{background:var(--green-bg);color:var(--green-d);border:1px solid var(--green-border)}
+.pc-active{background:var(--blue-bg);color:#1d4ed8;border:1px solid #93c5fd}
+.pc-next{background:var(--surface);color:var(--dim);border:1px solid var(--border)}
+.phase h3{font-size:0.98rem;font-weight:700;color:var(--ink);margin-bottom:0.45rem}
+.phase p{font-size:0.83rem;color:var(--muted);line-height:1.65}
+.phase-items{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:0.45rem}
+.phase-items li{font-size:0.8rem;color:var(--muted);display:flex;align-items:baseline;gap:0.5rem}
+.pi-chk{color:var(--green);font-weight:700;font-size:0.7rem;flex-shrink:0}
+.pi-arr{color:var(--blue);font-size:0.7rem;flex-shrink:0}
+.pi-dot{color:var(--dim);font-size:0.7rem;flex-shrink:0}
+
+/* ─── TEAM ─── */
+.team-sec{background:#fff}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem}
+.team-card{
+  border:1px solid var(--border);border-radius:var(--r2);
+  padding:1.75rem 1.5rem;text-align:center;background:#fff;
+  box-shadow:var(--shadow);transition:all 0.2s;
+}
+.team-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.tc-av{
+  width:68px;height:68px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.2rem;
+  margin:0 auto 1.1rem;border:2px solid transparent;
+}
+.ta1{background:var(--green-bg);color:var(--green-d);border-color:var(--green-border)}
+.ta2{background:var(--blue-bg);color:#1d4ed8;border-color:#93c5fd}
+.ta3{background:#fee2e2;color:#dc2626;border-color:#fca5a5}
+.ta4{background:var(--amber-bg);color:#b45309;border-color:#fde68a}
+.tc-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:0.25rem;letter-spacing:-0.01em}
+.tc-role{font-size:0.78rem;color:var(--muted);margin-bottom:1rem}
+.tc-desc{font-size:0.78rem;color:var(--muted);line-height:1.6}
+
+/* ─── TECH ─── */
+.tech-sec{background:var(--surface)}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.tech-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r2);
+  padding:1.6rem;box-shadow:var(--shadow);transition:all 0.2s;
+}
+.tech-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.tc-top{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.85rem}
+.tc-icon-box{
+  width:38px;height:38px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  background:var(--surface);border:1px solid var(--border);flex-shrink:0;
+}
+.tech-card h4{font-size:0.9rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em}
+.tech-card p{font-size:0.81rem;color:var(--muted);line-height:1.65}
+.tc-pills{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.85rem}
+.tc-pill{
+  font-size:0.67rem;font-weight:500;padding:0.18rem 0.5rem;border-radius:6px;
+  background:var(--surface);color:var(--dim);border:1px solid var(--border);
+}
+
+/* ─── CONTACT ─── */
+.contact-sec{background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
+.contact-left h3{font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:0.75rem}
+.contact-left>p{font-size:0.95rem;color:var(--muted);line-height:1.75;font-weight:300;margin-bottom:2rem}
+.cinfo{display:flex;flex-direction:column;gap:0.75rem}
+.ci{
+  display:flex;align-items:flex-start;gap:0.85rem;
+  padding:0.9rem 1.1rem;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--shadow);
+}
+.ci-ic{font-size:1rem;flex-shrink:0;margin-top:0.1rem}
+.ci-lbl{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--dim);margin-bottom:0.1rem}
+.ci-val{font-size:0.875rem;font-weight:500;color:var(--ink)}
+.cf{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r2);padding:2.2rem;box-shadow:var(--shadow);
+}
+.cf-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:0.4rem}
+.cf-sub{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem}
+.fg{margin-bottom:0.85rem}
+.fg label{display:block;font-size:0.78rem;font-weight:600;color:var(--ink);margin-bottom:0.38rem}
+.fg input,.fg select,.fg textarea{
+  width:100%;padding:0.62rem 0.85rem;
+  border:1.5px solid var(--border);border-radius:8px;
+  font-size:0.875rem;font-family:'DM Sans',sans-serif;
+  color:var(--ink);background:#fff;outline:none;
+  box-shadow:0 1px 2px rgba(16,24,40,0.05);
+  transition:border-color 0.15s,box-shadow 0.15s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(18,183,106,0.1);
+}
+.fg textarea{resize:vertical;min-height:90px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.cf-btn{
+  width:100%;padding:0.8rem;border-radius:9px;
+  background:var(--ink);color:#fff;border:none;
+  font-size:0.9rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;
+  box-shadow:var(--shadow);transition:all 0.18s;
+  display:flex;align-items:center;justify-content:center;gap:0.5rem;
+}
+.cf-btn:hover{background:var(--ink2);box-shadow:var(--shadow-md)}
+
+/* ─── CTA ─── */
+.cta-sec{
+  background:var(--ink);padding:6rem 0;
+  position:relative;overflow:hidden;
+}
+.cta-sec::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-size:24px 24px;pointer-events:none;
+}
+.cta-inner{
+  max-width:680px;margin:0 auto;text-align:center;padding:0 2.5rem;
+  position:relative;
+}
+.cta-inner h2{color:#fff;font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem}
+.cta-inner p{color:rgba(255,255,255,0.45);font-size:1rem;line-height:1.75;margin-bottom:2.5rem;font-weight:300}
+.cta-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-cta-primary{
+  background:var(--green);color:#fff;border:none;
+  padding:0.85rem 2rem;border-radius:9px;
+  font-size:0.95rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;
+  box-shadow:0 0 0 1px rgba(18,183,106,0.5),0 4px 12px rgba(18,183,106,0.3);
+  transition:all 0.18s;
+}
+.btn-cta-primary:hover{background:#0da55f;transform:translateY(-1px)}
+.btn-cta-outline{
+  background:transparent;color:rgba(255,255,255,0.7);
+  border:1.5px solid rgba(255,255,255,0.15);
+  padding:0.85rem 2rem;border-radius:9px;
+  font-size:0.95rem;cursor:pointer;font-family:'DM Sans',sans-serif;
+  transition:all 0.18s;
+}
+.btn-cta-outline:hover{border-color:rgba(255,255,255,0.4);color:#fff}
+
+/* ─── FOOTER ─── */
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding:3.5rem 0 2rem}
+.foot-grid{
+  max-width:1120px;margin:0 auto;padding:0 2.5rem;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;
+}
+.foot-brand{}
+.foot-brand .logo-name{display:block;margin-bottom:0.85rem}
+.foot-brand p{font-size:0.82rem;color:rgba(255,255,255,0.3);line-height:1.7;max-width:240px}
+.foot-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem}
+.ft{font-size:0.68rem;padding:0.18rem 0.55rem;border-radius:6px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.07)}
+.foot-col h5{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1rem}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+.foot-col a{font-size:0.83rem;color:rgba(255,255,255,0.35);transition:color 0.15s}
+.foot-col a:hover{color:#fff}
+.foot-bottom{
+  max-width:1120px;margin:0 auto;padding:1.5rem 2.5rem 0;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.foot-copy{font-size:0.75rem;color:rgba(255,255,255,0.18)}
+.foot-legal{font-size:0.7rem;color:rgba(255,255,255,0.1);margin-top:0.25rem}
+.foot-right{display:flex;gap:1.5rem}
+.foot-right a{font-size:0.75rem;color:rgba(255,255,255,0.18);transition:color 0.15s}
+.foot-right a:hover{color:rgba(255,255,255,0.5)}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:800px){
+  .hero-inner,.about-grid,.pilot-inner,.contact-grid{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .mods{grid-template-columns:1fr 1fr}
+  .mod-wide{grid-column:span 2}
+  .mod-wide-inner{grid-template-columns:auto 1fr}
+  .users-grid,.team-grid{grid-template-columns:1fr 1fr}
+  .tech-grid{grid-template-columns:1fr 1fr}
+  .phases{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="ann">
+  <span class="ann-badge">Live</span>
+  <span><strong>Phase 2 complete.</strong> All 7 modules built. Phase 3 production launch underway.</span>
+  <a href="#roadmap">See roadmap →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark"><span>G</span></div>
+      <span class="logo-name">Gojo<em>.</em></span>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#platform">Platform</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow"><span class="ey-dot"></span> EdTech SaaS · Built in Ethiopia</div>
+      <h1>The school<br>operating system<br>for <span class="hl">modern Africa</span></h1>
+      <p class="hero-sub">Gojo unifies learning, administration, HR, finance, and communication for schools into one intelligent, cloud-based platform — affordable for every school.</p>
+      <div class="hero-actions">
+        <button class="btn-hero-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request early access <span>→</span></button>
+        <button class="btn-hero-outline" onclick="document.getElementById('platform').scrollIntoView({behavior:'smooth'})">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="7" stroke="currentColor" stroke-opacity="0.5"/><path d="M6 4.5l4 3-4 3V4.5z" fill="currentColor"/></svg>
+          See the platform
+        </button>
+      </div>
+      <div class="hero-social">
+        <div class="hs-avatars">
+          <div class="hs-av av-c1">ET</div>
+          <div class="hs-av av-c2">BT</div>
+          <div class="hs-av av-c3">BT</div>
+        </div>
+        <span class="hs-label">Built by a <strong>team of 4</strong> — developers & educators</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- floating badges -->
+      <div class="hero-float1">
+        <div class="fl-icon">✅</div>
+        <div><div class="fl-label">Pilot completed</div><div class="fl-val">Gudda Miju-PARC</div></div>
+      </div>
+      <div class="hero-float2">
+        <div class="fl-icon">🚀</div>
+        <div><div class="fl-label">Phase 3 live</div><div class="fl-val">Production build</div></div>
+      </div>
+      <!-- App mockup -->
+      <div class="hero-card">
+        <div class="hc-top">
+          <div class="hc-dots"><div class="hcd hcd-r"></div><div class="hcd hcd-y"></div><div class="hcd hcd-g"></div></div>
+          <div class="hc-title">app.gojo.school / dashboard</div>
+        </div>
+        <div class="hc-body">
+          <div class="hc-sb">
+            <div class="hc-sb-logo">Gojo<em>.</em></div>
+            <div class="sb-sec">Main</div>
+            <div class="sb-item on"><span class="sb-i">📊</span> Dashboard</div>
+            <div class="sb-item"><span class="sb-i">👤</span> Students</div>
+            <div class="sb-item"><span class="sb-i">📅</span> Academic</div>
+            <div class="sb-item"><span class="sb-i">📝</span> Exams</div>
+            <div class="sb-sec">Admin</div>
+            <div class="sb-item"><span class="sb-i">👥</span> HR</div>
+            <div class="sb-item"><span class="sb-i">💳</span> Finance</div>
+            <div class="sb-item"><span class="sb-i">📋</span> Register</div>
+          </div>
+          <div class="hc-main">
+            <div class="hc-head">
+              <div class="hc-htitle">Dashboard</div>
+              <div class="live-pill"><span class="live-dot"></span> Live</div>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi"><div class="kpi-n">1,248</div><div class="kpi-l">Students</div><div class="kpi-d">↑ 4.2%</div></div>
+              <div class="kpi"><div class="kpi-n">96%</div><div class="kpi-l">Attendance</div><div class="kpi-d">↑ 1.1%</div></div>
+              <div class="kpi"><div class="kpi-n">84.7</div><div class="kpi-l">Avg Score</div><div class="kpi-d">↑ 2.4</div></div>
+              <div class="kpi"><div class="kpi-n">ETB 18k</div><div class="kpi-l">Fees</div><div class="kpi-d">↑ 8.9%</div></div>
+            </div>
+            <div class="card-row">
+              <div class="mini-panel">
+                <div class="mp-title">Top Students</div>
+                <div class="s-row"><div class="s-av sa1">AT</div><span class="s-name">Amara T.</span><span class="s-grade">94%</span></div>
+                <div class="s-row"><div class="s-av sa2">KM</div><span class="s-name">Kebede M.</span><span class="s-grade">89%</span></div>
+                <div class="s-row"><div class="s-av sa3">SH</div><span class="s-name">Selam H.</span><span class="s-grade">87%</span></div>
+                <div class="s-row"><div class="s-av sa4">DB</div><span class="s-name">Dawit B.</span><span class="s-grade">83%</span></div>
+              </div>
+              <div class="mini-panel">
+                <div class="mp-title">Module Progress</div>
+                <div class="bar-list">
+                  <div class="bar-row"><span class="bar-label">Student App</span><div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div><span class="bar-pct">100%</span></div>
+                  <div class="bar-row"><span class="bar-label">Parent App</span><div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div><span class="bar-pct">100%</span></div>
+                  <div class="bar-row"><span class="bar-label">Teacher</span><div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div><span class="bar-pct">100%</span></div>
+                  <div class="bar-row"><span class="bar-label">Academic</span><div class="bar-bg"><div class="bar-fill bar-b" style="width:88%"></div></div><span class="bar-pct">88%</span></div>
+                  <div class="bar-row"><span class="bar-label">Finance</span><div class="bar-bg"><div class="bar-fill bar-b" style="width:72%"></div></div><span class="bar-pct">72%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-label">Designed for</span>
+    <div class="strip-logos">
+      <span class="strip-name">Private Schools</span>
+      <span class="strip-name">Government Schools</span>
+      <span class="strip-name">School Networks</span>
+      <span class="strip-name">Education Offices</span>
+    </div>
+    <div class="pilot-chip">✅ <strong>Pilot:</strong> Gudda Miju-PARC School · Adama, Ethiopia</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-sec" id="about">
+  <div class="wrap">
+    <div class="s-label">About Gojo</div>
+    <h2 class="s-title">One platform for<br>the entire school</h2>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>Gojo was built to solve a problem both founders experienced firsthand: Ethiopian schools are still running on paper registers, printed textbooks, and disconnected manual systems — while the rest of the world has moved to integrated digital platforms.</p>
+        <p>What started as a simple student exam-practice app evolved into a full school operating system. Gojo connects every major department and every stakeholder — students, parents, teachers, academic staff, HR, finance, and registration — into one unified cloud platform.</p>
+        <p>Gojo operates as a SaaS business. Schools subscribe monthly or annually and get immediate access to all seven modules — no hardware required, no IT team needed, up and running in minutes.</p>
+        <div class="about-callout">
+          <div class="ac-icon">🏆</div>
+          <div class="ac-text"><strong>Pilot completed at Gudda Miju-PARC School in Adama, Ethiopia.</strong> The school formally recommended Gojo for scaling to other institutions through the Adama Administrative Town Education Office.</div>
+        </div>
+      </div>
+      <div class="fact-table">
+        <div class="fact-row"><div class="fk">Company</div><div class="fv">Gojo Education Platform</div></div>
+        <div class="fact-row"><div class="fk">Founded</div><div class="fv">2024, Ethiopia</div></div>
+        <div class="fact-row"><div class="fk">Model</div><div class="fv">SaaS — monthly & annual per-school subscription</div></div>
+        <div class="fact-row"><div class="fk">Primary market</div><div class="fv">Ethiopia</div></div>
+        <div class="fact-row"><div class="fk">Vision</div><div class="fv light">Scaling across Africa</div></div>
+        <div class="fact-row"><div class="fk">Platform</div><div class="fv">Cloud · Web portals + iOS & Android apps</div></div>
+        <div class="fact-row"><div class="fk">Modules</div><div class="fv">7 — covering every school department</div></div>
+        <div class="fact-row"><div class="fk">Stage</div><div class="fv">Phase 3 — production build & first clients</div></div>
+        <div class="fact-row"><div class="fk">Governing law</div><div class="fv light">Federal Democratic Republic of Ethiopia</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform-sec" id="platform">
+  <div class="wrap">
+    <div class="center">
+      <div class="s-label" style="justify-content:center">Platform</div>
+      <h2 class="s-title">7 modules. Every role.<br>One unified system.</h2>
+      <p class="s-sub">Purpose-built interfaces for each stakeholder, all sharing a single school database — configurable per school, no code changes required.</p>
+    </div>
+    <div class="mods reveal">
+      <div class="mod">
+        <div class="mod-icon mi-g">📱</div>
+        <h3>Student Mobile App</h3>
+        <p>A complete digital learning environment — available on iOS and Android.</p>
+        <ul class="mod-feats">
+          <li>Digital textbook library by grade & subject</li>
+          <li>Chapter-based exams with difficulty levels</li>
+          <li>80%+ score required to advance levels</li>
+          <li>School, grade, class & subject rankings</li>
+          <li>Score history & teacher communication</li>
+        </ul>
+      </div>
+      <div class="mod">
+        <div class="mod-icon mi-g">👨‍👩‍👧</div>
+        <h3>Parent Mobile App</h3>
+        <p>Real-time visibility into academic progress — iOS and Android.</p>
+        <ul class="mod-feats">
+          <li>Exam scores, rankings & class points</li>
+          <li>Attendance & academic progress tracking</li>
+          <li>School announcements & notices</li>
+          <li>Direct communication with school</li>
+        </ul>
+      </div>
+      <div class="mod">
+        <div class="mod-icon mi-b">👩‍🏫</div>
+        <h3>Teacher Web Platform</h3>
+        <p>Full content creation and student management tools.</p>
+        <ul class="mod-feats">
+          <li>Exam creation & question bank</li>
+          <li>Book & learning material upload</li>
+          <li>Score, ranking & class point management</li>
+          <li>Student communication & reports</li>
+        </ul>
+      </div>
+      <div class="mod">
+        <div class="mod-icon mi-b">📅</div>
+        <h3>Academic Web Platform</h3>
+        <p>School-wide academic operations management.</p>
+        <ul class="mod-feats">
+          <li>Curriculum, subjects & grade management</li>
+          <li>Class scheduling & academic calendar</li>
+          <li>Exam scheduling & performance analytics</li>
+          <li>Academic approval workflows</li>
+        </ul>
+      </div>
+      <div class="mod">
+        <div class="mod-icon mi-b">📋</div>
+        <h3>Registration Platform</h3>
+        <p>Digital admissions from application to enrollment.</p>
+        <ul class="mod-feats">
+          <li>Student registration & enrollment</li>
+          <li>Class assignment & student ID generation</li>
+          <li>Transfer & withdrawal management</li>
+          <li>Admission tracking & reporting</li>
+        </ul>
+      </div>
+      <div class="mod">
+        <div class="mod-icon mi-b">👥</div>
+        <h3>HR Web Platform</h3>
+        <p>Complete human resource management for all staff.</p>
+        <ul class="mod-feats">
+          <li>Employee & teacher registration</li>
+          <li>Attendance, leave & contract management</li>
+          <li>Recruitment & performance tracking</li>
+          <li>Department management & HR reports</li>
+        </ul>
+      </div>
+      <div class="mod mod-wide">
+        <div class="mod-wide-inner">
+          <div class="mw-icon">💳</div>
+          <div>
+            <h3>Finance Web Platform</h3>
+            <p>Complete school financial management — fee invoicing, payment recording, expense tracking, and reporting — in Ethiopian Birr (ETB).</p>
+          </div>
+          <div class="mw-tags">
+            <span class="mw-tag">Fee management</span>
+            <span class="mw-tag">Invoice generation</span>
+            <span class="mw-tag">Payment recording</span>
+            <span class="mw-tag">Financial analytics</span>
+            <span class="mw-tag">ETB currency</span>
+            <span class="mw-tag">Budget monitoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="users-sec">
+  <div class="wrap">
+    <div class="center">
+      <div class="s-label" style="justify-content:center">Who it's for</div>
+      <h2 class="s-title">Built for every person in the school</h2>
+      <p class="s-sub">Each stakeholder gets their own purpose-built interface — all connected to the same school database.</p>
+    </div>
+    <div class="users-grid reveal">
+      <div class="user-card">
+        <div class="u-icon ui-g">📱</div>
+        <h3>Students</h3>
+        <p>Access digital books, take exams, track scores and rankings, earn class points, and communicate with teachers — all from their phone.</p>
+      </div>
+      <div class="user-card">
+        <div class="u-icon ui-b">👨‍👩‍👧</div>
+        <h3>Parents</h3>
+        <p>Monitor exam results, attendance, rankings, and school announcements in real time — staying connected to their child's education.</p>
+      </div>
+      <div class="user-card">
+        <div class="u-icon ui-p">👩‍🏫</div>
+        <h3>Teachers</h3>
+        <p>Create exams, upload learning materials, manage student scores, assign class points, and communicate with students efficiently.</p>
+      </div>
+      <div class="user-card">
+        <div class="u-icon ui-a">🏫</div>
+        <h3>School Admins</h3>
+        <p>Manage academics, HR, finance, registrations, and all school operations from one unified administrative dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILOT -->
+<section class="pilot-sec">
+  <div class="pilot-inner reveal">
+    <div class="pilot-left">
+      <div class="s-label">Real-world validation</div>
+      <h2>Officially recommended after a real-school pilot</h2>
+      <p>Gojo was piloted at a real school in Adama, Ethiopia — implemented by the development team and evaluated by school staff on actual classroom usage, teacher feedback, and student engagement.</p>
+      <p style="margin-top:1rem">Following the pilot period, the school issued a formal recommendation letter to the Adama Administrative Town Bole Sub-city Education Office, supporting the scaling of Gojo to other institutions.</p>
+    </div>
+    <div class="pilot-card">
+      <div class="pilot-card-head">
+        <div class="pilot-logo">🏫</div>
+        <div>
+          <div class="pilot-school">Gudda Miju-PARC School</div>
+          <div class="pilot-loc">Adama, Oromia, Ethiopia · Pilot School</div>
+        </div>
+      </div>
+      <div class="pilot-outcomes">
+        <div class="po"><div class="po-check">✓</div><div class="po-text">Improved Academic Communication</div></div>
+        <div class="po"><div class="po-check">✓</div><div class="po-text">Increased Student Engagement</div></div>
+        <div class="po"><div class="po-check">✓</div><div class="po-text">Administrative Efficiency achieved</div></div>
+        <div class="po"><div class="po-check">✓</div><div class="po-text">Enhanced Teaching Support</div></div>
+      </div>
+      <div class="pilot-quote">"Our institution recognizes the pilot as a promising digital education solution with strong potential to support the national education digital transformation strategy." — Official Recommendation Letter</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap-sec" id="roadmap">
+  <div class="wrap">
+    <div class="center">
+      <div class="s-label" style="justify-content:center">Development roadmap</div>
+      <h2 class="s-title">Where we are today</h2>
+      <p class="s-sub">Gojo has been built through structured phases. Each phase unlocks new capabilities on the path to a full production launch.</p>
+    </div>
+    <div class="phases reveal">
+      <div class="phase done">
+        <div class="phase-num">1</div>
+        <div class="phase-chip pc-done">✓ Complete</div>
+        <h3>Phase 1 — Pilot</h3>
+        <p>Initial platform built, deployed, and piloted at a real school. Core features validated with actual classroom usage.</p>
+        <ul class="phase-items">
+          <li><span class="pi-chk">✓</span> Student, parent & teacher apps built</li>
+          <li><span class="pi-chk">✓</span> 4 core modules functional</li>
+          <li><span class="pi-chk">✓</span> Real-school pilot completed</li>
+          <li><span class="pi-chk">✓</span> Official recommendation received</li>
+        </ul>
+      </div>
+      <div class="phase done">
+        <div class="phase-num">2</div>
+        <div class="phase-chip pc-done">✓ Complete — June 2026</div>
+        <h3>Phase 2 — Full Build</h3>
+        <p>Major platform expansion. Migrated to React and React Native. All 7 modules built with polished, production-ready interfaces.</p>
+        <ul class="phase-items">
+          <li><span class="pi-chk">✓</span> Rebuilt in React & React Native</li>
+          <li><span class="pi-chk">✓</span> Expanded from 4 to 7 modules</li>
+          <li><span class="pi-chk">✓</span> UI/UX overhauled from pilot feedback</li>
+          <li><span class="pi-chk">✓</span> All frontend interfaces delivered</li>
+        </ul>
+      </div>
+      <div class="phase active">
+        <div class="phase-num">3</div>
+        <div class="phase-chip pc-active">⚡ In progress — 2026</div>
+        <h3>Phase 3 — Production Launch</h3>
+        <p>Building the production backend, deploying all 7 modules, and onboarding the first paying school clients.</p>
+        <ul class="phase-items">
+          <li><span class="pi-arr">→</span> Backend migration to PostgreSQL</li>
+          <li><span class="pi-arr">→</span> All 7 modules deployed to production</li>
+          <li><span class="pi-arr">→</span> First paying school clients onboarded</li>
+          <li><span class="pi-dot">◦</span> Africa expansion begins</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-sec" id="team">
+  <div class="wrap">
+    <div class="center">
+      <div class="s-label" style="justify-content:center">The team</div>
+      <h2 class="s-title">Built by educators<br>and engineers</h2>
+      <p class="s-sub">A small, focused team of software developers and educators based in Ethiopia — building Gojo from the ground up.</p>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="tc-av ta1">ET</div>
+        <div class="tc-name">Ephrem Tesema</div>
+        <div class="tc-role">Co-Founder & CEO</div>
+        <div class="tc-desc">Product director, CS graduate, software developer, UI/UX designer, and educator. Leads company vision, product roadmap, client acquisition, and overall strategy.</div>
+      </div>
+      <div class="team-card">
+        <div class="tc-av ta2">BT</div>
+        <div class="tc-name">Bemnet Tilahun</div>
+        <div class="tc-role">Co-Founder & CTO</div>
+        <div class="tc-desc">Technical architect and engineering lead. Oversees all platform development, sets engineering standards, and drives infrastructure, scalability, and code quality.</div>
+      </div>
+      <div class="team-card">
+        <div class="tc-av ta3">BT</div>
+        <div class="tc-name">Biruk Tefera</div>
+        <div class="tc-role">Frontend Developer</div>
+        <div class="tc-desc">Built and delivered all 7 module frontends in React and React Native. Now leading frontend-backend integration and user experience for the production launch.</div>
+      </div>
+      <div class="team-card">
+        <div class="tc-av ta4">YA</div>
+        <div class="tc-name">Yosef Ayele</div>
+        <div class="tc-role">Backend Architect</div>
+        <div class="tc-desc">Designing and implementing the full production backend — architecture, APIs, authentication, and database structure. Leading the migration to PostgreSQL for scale.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section class="tech-sec">
+  <div class="wrap">
+    <div class="s-label">Infrastructure</div>
+    <h2 class="s-title">Built for scale</h2>
+    <p class="s-sub">Modern technology stack chosen for reliability, performance, and cost-effective deployment across Ethiopian schools.</p>
+    <div class="tech-grid reveal">
+      <div class="tech-card">
+        <div class="tc-top"><div class="tc-icon-box">📱</div><h4>Mobile Apps</h4></div>
+        <p>Student and parent apps built in React Native — one codebase delivering native performance on both iOS and Android.</p>
+        <div class="tc-pills"><span class="tc-pill">React Native</span><span class="tc-pill">iOS</span><span class="tc-pill">Android</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-top"><div class="tc-icon-box">🌐</div><h4>Web Portals ×5</h4></div>
+        <p>All five admin-facing platforms built in React — consistent architecture, fast rendering, single maintainable codebase.</p>
+        <div class="tc-pills"><span class="tc-pill">React</span><span class="tc-pill">5 portals</span><span class="tc-pill">Web</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-top"><div class="tc-icon-box">🗄️</div><h4>Cloud Database</h4></div>
+        <p>Migrating to PostgreSQL for production — structured relational data, multi-school tenancy, and high-performance queries at scale.</p>
+        <div class="tc-pills"><span class="tc-pill">PostgreSQL</span><span class="tc-pill">Cloud-hosted</span><span class="tc-pill">Multi-tenant</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-top"><div class="tc-icon-box">🔐</div><h4>Security & Access</h4></div>
+        <p>Role-based access control across all 7 modules. Each user type has scoped permissions, with secure authentication and encrypted data.</p>
+        <div class="tc-pills"><span class="tc-pill">RBAC</span><span class="tc-pill">Encrypted auth</span><span class="tc-pill">Data privacy</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-top"><div class="tc-icon-box">⚙️</div><h4>Per-School Config</h4></div>
+        <p>Each school is configured independently — branding, subjects, grades, structure — with no code changes. True SaaS multi-tenancy.</p>
+        <div class="tc-pills"><span class="tc-pill">Multi-school</span><span class="tc-pill">Configurable</span><span class="tc-pill">White-label ready</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tc-top"><div class="tc-icon-box">💼</div><h4>Business Model</h4></div>
+        <p>SaaS subscription — monthly or annual — per school. Priced in Ethiopian Birr. Designed to be affordable at every school size.</p>
+        <div class="tc-pills"><span class="tc-pill">SaaS</span><span class="tc-pill">ETB pricing</span><span class="tc-pill">Monthly & annual</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-sec" id="contact">
+  <div class="wrap">
+    <div class="s-label">Get in touch</div>
+    <h2 class="s-title">Contact Gojo</h2>
+    <p class="s-sub">Interested in Gojo for your school, want to partner with us, or just want to learn more? We'd love to hear from you.</p>
+    <div class="contact-grid reveal">
+      <div>
+        <h3>Reach out directly</h3>
+        <p>We're a small, responsive team. Every message reaches the founders directly.</p>
+        <div class="cinfo">
+          <div class="ci"><div class="ci-ic">📍</div><div><div class="ci-lbl">Location</div><div class="ci-val">Addis Ababa, Ethiopia</div></div></div>
+          <div class="ci"><div class="ci-ic">✉️</div><div><div class="ci-lbl">General inquiries</div><div class="ci-val">gojo.education1@gmail.com</div></div></div>
+          <div class="ci"><div class="ci-ic">🏫</div><div><div class="ci-lbl">School onboarding</div><div class="ci-val">gojo.education1@gmail.com</div></div></div>
+          <div class="ci"><div class="ci-ic">💼</div><div><div class="ci-lbl">Investors & partnerships</div><div class="ci-val">gojo.education1@gmail.com</div></div></div>
+        </div>
+        <div style="margin-top:1.5rem;padding:1.25rem 1.4rem;background:var(--ink);border-radius:var(--r2)">
+          <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.3);margin-bottom:0.6rem">Our mission</div>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.4);line-height:1.72;font-weight:300">Provide schools with affordable digital tools that improve learning, communication, assessment, and management — starting in Ethiopia, scaling across Africa.</p>
+        </div>
+      </div>
+      <div class="cf">
+        <div class="cf-title">Send us a message</div>
+        <div class="cf-sub">We'll get back to you within 24 hours.</div>
+        <form id="contact-form" novalidate>
+          <div class="fg-row">
+            <div class="fg"><label for="cf-fname">First name</label><input id="cf-fname" name="firstName" type="text" placeholder="Abebe" required></div>
+            <div class="fg"><label for="cf-lname">Last name</label><input id="cf-lname" name="lastName" type="text" placeholder="Kebede"></div>
+          </div>
+          <div class="fg"><label for="cf-email">Email address</label><input id="cf-email" name="email" type="email" placeholder="you@example.com" required></div>
+          <div class="fg"><label for="cf-org">Organization</label><input id="cf-org" name="organization" type="text" placeholder="School or company name"></div>
+          <div class="fg">
+            <label for="cf-interest">I'm interested in</label>
+            <select id="cf-interest" name="interest">
+              <option>Learning more about Gojo</option>
+              <option>Piloting Gojo at my school</option>
+              <option>Partnership or investment</option>
+              <option>Joining the team</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" placeholder="Tell us about yourself or your school..."></textarea></div>
+          <div id="cf-error" style="display:none;margin-bottom:0.85rem;padding:0.65rem 0.85rem;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;font-size:0.82rem;color:#dc2626"></div>
+          <button type="submit" class="cf-btn" id="cf-submit">Send message <span>→</span></button>
+        </form>
+        <div id="cf-success" style="display:none;text-align:center;padding:2rem 1rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">✅</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:0.4rem">Message sent!</div>
+          <p style="font-size:0.875rem;color:var(--muted)">We'll get back to you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-inner">
+    <div class="s-label" style="justify-content:center;color:rgba(18,183,106,0.6)">Ready to get started?</div>
+    <h2>Transform how<br>your school operates</h2>
+    <p>Join the early-access program. Be among the first schools to run on Gojo when we launch production in 2026.</p>
+    <div class="cta-actions">
+      <button class="btn-cta-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request early access →</button>
+      <button class="btn-cta-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn more about Gojo</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="logo" style="margin-bottom:0.85rem">
+        <div class="logo-mark"><span>G</span></div>
+        <span class="logo-name">Gojo<em style="font-style:normal;color:var(--green)">.</em></span>
+      </div>
+      <p>Cloud-based SaaS school management and digital learning ecosystem — built for Ethiopia, expanding across Africa.</p>
+      <div class="foot-tags">
+        <span class="ft">EdTech</span>
+        <span class="ft">SaaS</span>
+        <span class="ft">Ethiopia 🇪🇹</span>
+        <span class="ft">Africa</span>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h5>Platform</h5>
+      <ul>
+        <li><a href="#platform">Student App</a></li>
+        <li><a href="#platform">Parent App</a></li>
+        <li><a href="#platform">Teacher Platform</a></li>
+        <li><a href="#platform">Academic Module</a></li>
+        <li><a href="#platform">HR Module</a></li>
+        <li><a href="#platform">Finance Module</a></li>
+        <li><a href="#platform">Registration</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About Gojo</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="#contact">Request Demo</a></li>
+        <li><a href="#contact">Early Access</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>
+      <div class="foot-copy">© 2026 Gojo Education Platform. All rights reserved.</div>
+      <div class="foot-legal">Governed under the laws of the Federal Democratic Republic of Ethiopia.</div>
+    </div>
+    <div class="foot-right">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(
+  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') }),
+  {threshold:0.08}
+);
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── Contact form → Google Sheets ──
+// IMPORTANT:
+// Messages are saved to the Google Sheet connected to THIS Apps Script web app URL.
+// To deliver messages to a different Google account's Sheet, deploy a new Apps Script
+// from that account and replace GOJO_SCRIPT_URL below.
+const GOJO_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxY1IPahMvnKy7091hXyfnAaHIsVvjIU95Jl1N7vWP691jfpBKEKU_93TefyMZ6Vfei3w/exec';
+
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn    = document.getElementById('cf-submit');
+  const errBox = document.getElementById('cf-error');
+  const successBox = document.getElementById('cf-success');
+  errBox.style.display = 'none';
+  successBox.style.display = 'none';
+
+  const firstName = document.getElementById('cf-fname').value.trim();
+  const email     = document.getElementById('cf-email').value.trim();
+  const message   = document.getElementById('cf-msg').value.trim();
+  if (!firstName || !email || !message) {
+    errBox.textContent = 'Please fill in your first name, email address, and message.';
+    errBox.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = 'Sending… <span>⏳</span>';
+
+  const formData = new FormData(this);
+  formData.append('submittedAt', new Date().toISOString());
+  formData.append('sourcePage', window.location.href);
+
+  const payload = new URLSearchParams();
+  formData.forEach((value, key) => payload.append(key, String(value)));
+
+  const showError = function() {
+    errBox.textContent = 'Something went wrong. Please email us at gojo.education1@gmail.com';
+    errBox.style.display = 'block';
+    btn.disabled = false;
+    btn.innerHTML = 'Send message <span>→</span>';
+  };
+
+  try {
+    // First try standard CORS mode for explicit success checking.
+    const res = await fetch(GOJO_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: payload.toString()
+    });
+
+    if (!res.ok) {
+      throw new Error('CORS request failed with non-OK response');
+    }
+
+    document.getElementById('contact-form').style.display = 'none';
+    successBox.style.display = 'block';
+  } catch (err) {
+    try {
+      // Fallback for Apps Script deployments that do not return CORS headers.
+      await fetch(GOJO_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: payload
+      });
+
+      document.getElementById('contact-form').style.display = 'none';
+      successBox.style.display = 'block';
+    } catch (fallbackErr) {
+      showError();
+    }
+  }
+});
+</script>
+</body>
+</html>
